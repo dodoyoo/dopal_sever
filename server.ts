@@ -6,8 +6,12 @@ import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 const app = createApp();
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 const HOST = process.env.HOST;
+
+console.log('HOST:::::', process.env.HOST);
+console.log('PORT:::::', process.env.PORT);
+console.log('Swagger URL:::', `http://${HOST}:${port}`);
 
 const swaggerDefinition = {
   openapi: '3.0.0',
@@ -47,11 +51,11 @@ const swaggerSpec = swaggerJSDoc(options);
 
       app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-      app.all('*', (req: Request, res: Response, next: NextFunction) => {
-        const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+      // app.all('*', (req: Request, res: Response, next: NextFunction) => {
+      //   const err = new Error(`Can't find ${req.originalUrl} on this server!`);
 
-        next(err);
-      });
+      //   next(err);
+      // });
 
       app.listen(port, async () => {
         console.log(

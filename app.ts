@@ -13,7 +13,6 @@ export const createApp = () => {
       origin: '*',
     })
   );
-
   app.use(morgan('combined'));
   app.use(compression());
 
