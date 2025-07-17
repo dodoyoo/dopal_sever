@@ -13,7 +13,8 @@
 config/secrets.yml
 
 ### dotenv ###
-.env*
+.env.*
+.env.development
 
 ### node_modules ###
 node_modules
@@ -419,4 +420,8 @@ zsdoc/data
 /tests/_output/*
 !/tests/_output/.gitkeep
 
+<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv.env.development
+=======
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv
+>>>>>>> d048757 (초기세팅)

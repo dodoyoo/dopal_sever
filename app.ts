@@ -9,7 +9,6 @@ import commentRouter from './src/domain/comment/commentRoute';
 
 import path from 'path';
 
-
 export const createApp = () => {
   const app = express();
 
@@ -26,7 +25,6 @@ export const createApp = () => {
   app.use(userRouter);
   app.use(commentRouter);
   app.use(openaiRoute);
-
 
   app.get('/ping', (req: Request, res: Response) => {
     res.status(200).json({ message: 'PongPong' });

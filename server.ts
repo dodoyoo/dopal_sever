@@ -38,7 +38,6 @@ const options = {
   swaggerDefinition,
 
   apis: ['./src/domain/user/*.ts', './src/domain/comment/*.ts'],
-
 };
 const swaggerSpec = swaggerJSDoc(options);
 
@@ -65,5 +64,8 @@ const swaggerSpec = swaggerJSDoc(options);
     .catch((error) => {
       console.error('DataSource.initialize() -->', error);
       process.exit(1);
+      throw new Error(
+        `Error during Data Source initialization: ${error.message}`
+      );
     });
 })();
