@@ -4,7 +4,6 @@ import { AppDataSource } from './src/models/dataSource';
 import { createApp } from './app';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { create } from 'domain';
 
 const app = createApp();
 const port = process.env.PORT || 4000;
@@ -55,16 +54,13 @@ const swaggerSpec = swaggerJSDoc(options);
       });
 
       app.listen(port, async () => {
-        // customLogger.customedInfo(`Server is running on port ${port}`);
-        // customLogger.customedError('This is an error message!');
         console.log(
           `Swagger docs available at http://${HOST}:${port}/api-docs`
         );
       });
     })
     .catch((error) => {
-      throw new Error(
-        `Error during Data Source initialization: ${error.message}`
-      );
+      console.error('DataSource.initialize() -->', error);
+      process.exit(1);
     });
 })();

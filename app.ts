@@ -3,7 +3,6 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import compression from 'compression';
-import path from 'path';
 
 export const createApp = () => {
   const app = express();
