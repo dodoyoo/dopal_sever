@@ -9,10 +9,6 @@ const app = createApp();
 const port = process.env.PORT || 3000;
 const HOST = process.env.HOST;
 
-console.log('HOST:::::', process.env.HOST);
-console.log('PORT:::::', process.env.PORT);
-console.log('Swagger URL:::', `http://${HOST}:${port}`);
-
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
