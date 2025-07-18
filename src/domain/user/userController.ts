@@ -47,6 +47,12 @@ export class UserController {
         throw new InvalidPropertyError('사용할 수 없는 비밀번호입니다.');
       }
 
+      const userExists = await this.userRepository.findByEmail(email);
+      console.log('User exists:', userExists);
+      if (userExists) {
+        throw new InvalidPropertyError('이미 사용중인 이메일입니다.');
+      }
+
       const hashedPassword: string = await hashPassword(password);
 
       const verificationToken = crypto.randomBytes(32).toString('hex');
