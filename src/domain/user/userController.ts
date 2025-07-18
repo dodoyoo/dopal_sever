@@ -47,7 +47,7 @@ export class UserController {
         password: hashedPassword,
         nickname,
       });
-      res.status(201).json({ message: '회원가입 성공' });
+      res.status(200).json({ message: '회원가입 성공' });
     } catch (err: unknown) {
       return reportErrorMessage(err, res);
     }
