@@ -68,4 +68,9 @@ router.post('/api/sign-up', (req: Request, res: Response) =>
  *                        type: string
  *                        description: "서버 오류입니다."
  */
+
+router.get('/api/sign-in', (req: Request, res: Response) =>
+  userController.signIn(req, res)
+);
+
 export default router;
