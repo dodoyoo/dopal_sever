@@ -36,7 +36,7 @@ const swaggerDefinition = {
 
 const options = {
   swaggerDefinition,
-  apis: [],
+  apis: ['./src/domain/user/*.ts'],
 };
 const swaggerSpec = swaggerJSDoc(options);
 
@@ -50,8 +50,9 @@ const swaggerSpec = swaggerJSDoc(options);
       // app.all('*', (req: Request, res: Response, next: NextFunction) => {
       //   const err = new Error(`Can't find ${req.originalUrl} on this server!`);
 
-      //   next(err);
-      // });
+      //   next(err); -> 이부분에서 에러가 발생하면 미들웨어로 돌아가게 해야하는데 현재 나는 미들웨어를 사용하지 않기 때문에
+      // });              주석을 풀고 서버를 열었을 때 에러가 발생하는 것이다.
+      //
 
       app.listen(port, async () => {
         console.log(
