@@ -1,0 +1,101 @@
+import { Request, Response, Router } from 'express';
+import { CommentController } from './commentController';
+import { CommentRepository } from './commentRepository';
+
+const router = Router();
+const commentRepository = new CommentRepository();
+const commentController = new CommentController(commentRepository);
+
+router.post('/api/comment/:userId', (req: Request, res: Response) =>
+  commentController.createComments(req, res)
+);
+
+/**
+ * @swagger
+ * path:
+ * /api/comment/{userId}:
+ *  post:
+ *      summary: "게시글 작성"
+ *      tags: [Comment]
+ *      parameters:
+ *       - in: path
+ *         name: userId
+ *         require: true
+ *         description: "유저 ID"
+ *         schema:
+ *           type: string
+ *      requestBody:
+ *         required: true
+ *         content:
+ *          application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 user_id:
+ *                   type: integer
+ *                   description: "사용자 ID"
+ *                   example: 1
+ *                 comment:
+ *                   type: string
+ *                   description: "게시글 내용"
+ *                   example: "Dopal아 OO 알려줘"
+ *      responses:
+ *        200:
+ *          description: "게시글 작성 성공"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  message:
+ *                    type: string
+ *                    example: "게시글 작성이 완료되었습니다."
+ *                  comment:
+ *                    type: object
+ *                    properties:
+ *                      id:
+ *                        type: integer
+ *                        example: 1
+ *                      user_id:
+ *                        type: integer
+ *                        example: 1
+ *                      comment:
+ *                        type: string
+ *                        example: "Dopal아 OO 분석해줘"
+ *                      created_at:
+ *                        type: string
+ *                      updated_at:
+ *                        type: string
+ *        400:
+ *          description: "잘못된 요청"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  message:
+ *                    type: string
+ *                    example: "잘못된 요청입니다."
+ *        404:
+ *          description: "게시글을 작성할 수 없음"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  message:
+ *                    type: string
+ *                    example: "게시글을 작성할 수 없습니다."
+ *        500:
+ *          description: "서버 오류"
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  message:
+ *                    type: string
+ *                    example: "서버 오류입니다."
+ */
+
+export default router;
