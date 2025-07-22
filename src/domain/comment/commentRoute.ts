@@ -98,4 +98,8 @@ router.post('/api/comment/:userId', (req: Request, res: Response) =>
  *                    example: "서버 오류입니다."
  */
 
+router.get('/api/comments', (req: Request, res: Response) =>
+  commentController.getComments(req, res)
+);
+
 export default router;
