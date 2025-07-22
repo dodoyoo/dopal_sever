@@ -32,7 +32,7 @@ export class CommentController {
     }
   }
 
-  public async getComments(req: Request, res: Response) {
+  public async findAllComments(req: Request, res: Response) {
     try {
       const posts: Comment[] = await this.commentRepository.findAllComment();
 
@@ -42,6 +42,29 @@ export class CommentController {
       } else {
         res.status(200).json({ message: '게시글 가져오기 성공', posts });
       }
+    } catch (err: unknown) {
+      return reportErrorMessage(err, res);
+    }
+  }
+
+  public async getComment(req: Request, res: Response) {
+    try {
+      const commentId: number = parseInt(req.params.commentId, 10);
+
+      if (!commentId) {
+        const err = new PropertyRequiredError('게시글 ID가 필요합니다.');
+        return reportErrorMessage(err, res);
+      }
+
+      const comment: Comment | null =
+        await this.commentRepository.findCommentById(commentId);
+
+      if (!comment) {
+        const err = new NotFoundDataError('게시글이 존재하지 않습니다.');
+        return reportErrorMessage(err, res);
+      }
+
+      return res.status(200).json({ message: '게시글 가져오기 성공', comment });
     } catch (err: unknown) {
       return reportErrorMessage(err, res);
     }

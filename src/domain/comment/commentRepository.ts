@@ -35,4 +35,16 @@ export class CommentRepository {
       throw new PropertyRequiredError('Failed to get all comments');
     }
   }
+
+  public async findCommentById(id: number): Promise<Comment | null> {
+    try {
+      return await this.repository.findOne({
+        where: { id },
+        relations: ['user'],
+      });
+    } catch (error) {
+      console.error('게시글을 찾는데 실패했습니다.', error);
+      throw new PropertyRequiredError('Failed to find comment');
+    }
+  }
 }
