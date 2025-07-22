@@ -21,7 +21,7 @@ export class CommentRepository {
     }
   }
 
-  public async findCommentById(): Promise<Comment[]> {
+  public async findAllComment(): Promise<Comment[]> {
     try {
       const comments = await this.repository
         .createQueryBuilder('comment')
