@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+
+import { Comment } from '../comment/commentEntity';
 
 @Entity('users')
 export class User {
@@ -32,4 +35,7 @@ export class User {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at!: Date;
+
+  @OneToMany(() => Comment, (comment) => comment.user)
+  comments!: Comment[];
 }
