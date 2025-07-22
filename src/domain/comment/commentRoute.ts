@@ -98,4 +98,14 @@ router.post('/api/comment/:userId', (req: Request, res: Response) =>
  *                    example: "서버 오류입니다."
  */
 
+// 모든 게시글 불러오기
+router.get('/api/comments', (req: Request, res: Response) =>
+  commentController.findAllComments(req, res)
+);
+
+// 게시글 개별로 가져오기
+router.get('/api/comments/:commentId', (req: Request, res: Response) =>
+  commentController.getComment(req, res)
+);
+
 export default router;
