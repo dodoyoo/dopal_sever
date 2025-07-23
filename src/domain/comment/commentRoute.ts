@@ -108,7 +108,7 @@ router.get('/api/comments', (req: Request, res: Response) =>
  * path:
  * /api/comments:
  *  get:
- *     summary: "게시글 조회"
+ *     summary: "전체 게시글 조회"
  *     tags: [Comment]
  *     responses:
  *       200:
@@ -164,5 +164,47 @@ router.get('/api/comments', (req: Request, res: Response) =>
 router.get('/api/comments/:commentId', (req: Request, res: Response) =>
   commentController.getComment(req, res)
 );
+
+/**
+ * @swagger
+ * path:
+ * /api/comments/{commentId}:
+ *  get:
+ *     summary: "상세 게시글 조회"
+ *     tags: [Comment]
+ *     parameters:
+ *      - in: path
+ *        name: commentId
+ *        require: true
+ *        description: "게시글 ID"
+ *        schema:
+ *          type: string
+ *     responses:
+ *       200:
+ *         description: "상세 게시글 조회 성공"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "상세 게시글 조회 성공했습니다."
+ *                 comment:
+ *                   type: object
+ *                   properties:
+ *                     id:
+ *                      type: integer
+ *                      example: 1
+ *                     user_id:
+ *                      type: integer
+ *                      example: 1
+ *                     comment:
+ *                      type: string
+ *                      example: "Dopal아 OO 분석해줘"
+ *                     created_at:
+ *                      type: string
+ *                      format: date-time
+ */
 
 export default router;
