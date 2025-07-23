@@ -207,4 +207,9 @@ router.get('/api/comments/:commentId', (req: Request, res: Response) =>
  *                      format: date-time
  */
 
+// 질문 삭제
+router.delete('/api/comments/:commentId', (req: Request, res: Response) =>
+  commentController.deleteComment(req, res)
+);
+
 export default router;
