@@ -207,4 +207,66 @@ router.get('/api/comments/:commentId', (req: Request, res: Response) =>
  *                      format: date-time
  */
 
+// 질문 삭제
+router.delete('/api/comments/:commentId', (req: Request, res: Response) =>
+  commentController.deleteComment(req, res)
+);
+
+/**
+ * @swagger
+ * path:
+ * /api/comments/{commentId}:
+ *  delete:
+ *    summary: "질문 삭제하기"
+ *    tags: [Comment]
+ *    parameters:
+ *      - in: path
+ *        name: commentId
+ *        require: true
+ *        description: "질문 ID"
+ *        schema:
+ *          type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              user_id:
+ *                type: integer
+ *                description: "사용자 ID"
+ *                example: 1
+ *    responses:
+ *      200:
+ *        description: "질문 삭제 성공"
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: "질문 삭제되었습니다."
+ *      400:
+ *        description: "잘못된 요청"
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: "잘못된 요청입니다."
+ *      500:
+ *        description: "서버 오류"
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: "서버 오류입니다."
+ */
 export default router;

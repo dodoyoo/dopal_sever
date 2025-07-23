@@ -47,4 +47,22 @@ export class CommentRepository {
       throw new PropertyRequiredError('Failed to find comment');
     }
   }
+
+  // 질문 삭제
+  public async deleteCommentById(
+    id: number,
+    user_id: number
+  ): Promise<boolean> {
+    try {
+      const comment = await this.findCommentById(id);
+      if (comment?.user.id !== user_id) {
+        throw new PropertyRequiredError('권한이 없습니다.');
+      }
+      await this.repository.remove(comment);
+      return true;
+    } catch (error) {
+      console.error('질문 삭제에 실패했습니다.', error);
+      throw error;
+    }
+  }
 }
