@@ -34,13 +34,13 @@ export class CommentController {
 
   public async findAllComments(req: Request, res: Response) {
     try {
-      const posts: Comment[] = await this.commentRepository.findAllComment();
+      const comments: Comment[] = await this.commentRepository.findAllComment();
 
-      if (posts.length === 0) {
+      if (comments.length === 0) {
         const err = new NotFoundDataError('게시글을 찾을 수 없습니다.');
         return reportErrorMessage(err, res);
       } else {
-        res.status(200).json({ message: '게시글 가져오기 성공', posts });
+        res.status(200).json({ message: '게시글 가져오기 성공', comments });
       }
     } catch (err: unknown) {
       return reportErrorMessage(err, res);

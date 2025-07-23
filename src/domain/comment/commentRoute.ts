@@ -103,6 +103,63 @@ router.get('/api/comments', (req: Request, res: Response) =>
   commentController.findAllComments(req, res)
 );
 
+/**
+ * @swagger
+ * path:
+ * /api/comments:
+ *  get:
+ *     summary: "게시글 조회"
+ *     tags: [Comment]
+ *     responses:
+ *       200:
+ *         description: "전체 게시글 조회 성공"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "전체 게시글 조회 성공했습니다."
+ *                 comment:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: integer
+ *                         example: 1
+ *                       comment:
+ *                         type: string
+ *                         example: "Dopal아 OO 분석해줘"
+ *                       user_id:
+ *                         type: integer
+ *                         example: 1
+ *                       created_at:
+ *                         type: string
+ *                         format: date-time
+ *       400:
+ *         description: "잘못된 요청"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "잘못된 요청입니다."
+ *       500:
+ *         description: "서버 오류"
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "서버 오류입니다."
+ */
+
 // 게시글 개별로 가져오기
 router.get('/api/comments/:commentId', (req: Request, res: Response) =>
   commentController.getComment(req, res)
