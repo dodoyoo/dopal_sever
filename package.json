@@ -1,7 +1,7 @@
 {
   "name": "dopal",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "env-cmd -f .env.development nodemon --exec ts-node server"
@@ -23,10 +23,7 @@
     "bcrypt": "^6.0.0",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
-<<<<<<< HEAD
     "crypto": "^1.0.1",
-=======
->>>>>>> d048757 (초기세팅)
     "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "init": "^0.1.2",
@@ -42,10 +39,7 @@
   },
   "devDependencies": {
     "@types/compression": "^1.8.1",
-<<<<<<< HEAD
     "@types/jsonwebtoken": "^9.0.10",
-=======
->>>>>>> d048757 (초기세팅)
     "@types/swagger-jsdoc": "^6.0.4",
     "env-cmd": "^10.1.0"
   }
