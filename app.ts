@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import compression from 'compression';
-
+import openaiRoute from './src/domain/openai/openaiRoute';
 import userRouter from './src/domain/user/userRout';
 import commentRouter from './src/domain/comment/commentRoute';
 
@@ -25,6 +25,7 @@ export const createApp = () => {
 
   app.use(userRouter);
   app.use(commentRouter);
+  app.use(openaiRoute);
 
 
   app.get('/ping', (req: Request, res: Response) => {
