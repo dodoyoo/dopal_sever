@@ -1,6 +1,9 @@
 import { DataSource } from 'typeorm';
+<<<<<<< HEAD
 import { User } from '../domain/user/userEntity';
 import { Comment } from '../domain/comment/commentEntity';
+=======
+>>>>>>> d048757 (초기세팅)
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
@@ -9,7 +12,10 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
+<<<<<<< HEAD
   logging: true,
   synchronize: false,
   entities: [User, Comment],
+=======
+>>>>>>> d048757 (초기세팅)
 });
