@@ -65,8 +65,5 @@ const swaggerSpec = swaggerJSDoc(options);
     .catch((error) => {
       console.error('DataSource.initialize() -->', error);
       process.exit(1);
-      throw new Error(
-        `Error during Data Source initialization: ${error.message}`
-      );
     });
 })();

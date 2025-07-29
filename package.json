@@ -1,17 +1,10 @@
 {
   "name": "dopal",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "main": "server.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "env-cmd -f .env.development nodemon --config nodemon.json --exec ts-node server"
-=======
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "env-cmd -f .env.development nodemon --exec ts-node server"
->>>>>>> d048757 (초기세팅)
   },
   "keywords": [],
   "author": "",

@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
-  "watch": ["./src", "./app.ts"],
-  "ignore": [".git", "node_modules", "dist", "build", "logs", "data"],
-=======
   "ignore": [".git", "node_modules", "dist", "build", "logs", "data"],
   "watch": ["./src", "./app.ts"],
   "exec": "npm run dev",
->>>>>>> d048757 (초기세팅)
   "ext": "ts"
 }
