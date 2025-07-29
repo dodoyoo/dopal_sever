@@ -1,5 +1,6 @@
 {
-  "watch": ["./src", "./app.ts"],
   "ignore": [".git", "node_modules", "dist", "build", "logs", "data"],
+  "watch": ["./src", "./app.ts"],
+  "exec": "npm run dev",
   "ext": "ts"
 }

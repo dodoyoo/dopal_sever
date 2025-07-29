@@ -1,9 +1,19 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv
 
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.*.local
+
+# API keys and secrets
+*.key
+config/secrets.yml
 
 ### dotenv ###
-.env
+.env*
 
 ### node_modules ###
 node_modules
@@ -409,4 +419,4 @@ zsdoc/data
 /tests/_output/*
 !/tests/_output/.gitkeep
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv
+# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv.env.development
