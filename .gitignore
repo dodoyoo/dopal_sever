@@ -16,6 +16,7 @@ config/secrets.yml
 .env.*
 .env.development
 
+
 ### node_modules ###
 node_modules
 
