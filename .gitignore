@@ -15,6 +15,7 @@ config/secrets.yml
 ### dotenv ###
 .env.*
 .env.development
+.env.production
 
 
 ### node_modules ###
