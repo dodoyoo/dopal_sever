@@ -38,7 +38,6 @@ const options = {
   swaggerDefinition,
 
   apis: ['./src/domain/user/*.ts', './src/domain/comment/*.ts'],
-
 };
 const swaggerSpec = swaggerJSDoc(options);
 
