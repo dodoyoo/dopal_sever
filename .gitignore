@@ -422,12 +422,8 @@ zsdoc/data
 /tests/_output/*
 !/tests/_output/.gitkeep
 
-<<<<<<< HEAD
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv.env.development
-<<<<<<< HEAD
-=======
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,vim,webstorm,linux,macos,windows,zsh,node,dotenv
->>>>>>> d048757 (초기세팅)
-=======
+
 .env.development
->>>>>>> 4fa831e (chore: remove env file from tracking)
+
