@@ -25,4 +25,8 @@ router.post('/ask', async (req: Request, res: Response) => {
   }
 });
 
+/**
+ * @swagger
+ */
+
 export default router;
