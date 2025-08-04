@@ -6,9 +6,11 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { User } from '../user/userEntity';
+import { Message } from './messageEntity';
 
 @Entity('conversation')
 export class Conversation {
@@ -24,4 +26,11 @@ export class Conversation {
     default: () => 'CURRENT_TIMESTAMP',
   })
   created_at!: Date;
+
+  @ManyToOne(() => User, (user) => user.conversations)
+  @JoinColumn({ name: 'user_id' })
+  user!: User;
+
+  @OneToMany(() => Message, (message) => message.conversation)
+  messages!: Message[];
 }
