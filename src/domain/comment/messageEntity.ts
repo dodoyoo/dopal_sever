@@ -4,4 +4,23 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
 } from 'typeorm';
+
+@Entity('messages')
+export class Message {
+  @PrimaryGeneratedColumn()
+  id!: number;
+
+  @Column({ type: 'number', nullable: false })
+  conversation_id!: number;
+
+  @Column({ type: 'enum', enum: ['user', 'ai'] })
+  sender!: 'user' | 'ai';
+
+  @Column({ length: 2000 })
+  content!: string;
+
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at!: Date;
+}
