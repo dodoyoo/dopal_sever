@@ -6,6 +6,7 @@ import {
   JoinColumn,
   CreateDateColumn,
 } from 'typeorm';
+import { Conversation } from './conversationEntity';
 
 @Entity('messages')
 export class Message {
@@ -27,4 +28,8 @@ export class Message {
     default: () => 'CURRENT_TIMESTAMP',
   })
   created_at!: Date;
+
+  @ManyToOne(() => Conversation, (conversation) => conversation.messages)
+  @JoinColumn({ name: 'conversation_id' })
+  conversation!: Conversation;
 }
