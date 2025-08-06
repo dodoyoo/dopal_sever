@@ -18,9 +18,13 @@ export class Message {
   @Column({ type: 'enum', enum: ['user', 'ai'] })
   sender!: 'user' | 'ai';
 
-  @Column({ length: 2000 })
+  @Column({ length: 2000, nullable: false })
   content!: string;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({
+    type: 'timestamp',
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   created_at!: Date;
 }

@@ -6,11 +6,13 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { User } from '../user/userEntity';
+import { Message } from './messageEntity';
 
-@Entity()
+@Entity('conversation')
 export class Conversation {
   @PrimaryGeneratedColumn()
   id!: number;
@@ -18,6 +20,17 @@ export class Conversation {
   @Column({ type: 'number', nullable: false })
   user_id!: number;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({
+    type: 'timestamp',
+    nullable: false,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   created_at!: Date;
+
+  @ManyToOne(() => User, (user) => user.conversations)
+  @JoinColumn({ name: 'user_id' })
+  user!: User;
+
+  @OneToMany(() => Message, (message) => message.conversation)
+  messages!: Message[];
 }
