@@ -24,7 +24,7 @@ router.post('/ask/:userId', async (req: Request, res: Response) => {
       body: { comment },
     } as Partial<Request> as Request;
 
-    const saveQuestion = await commentController.saveQuestionWithoutResponse;
+    // const saveQuestion = await commentController.saveQuestionWithoutResponse;
 
     const chatCompletion = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
