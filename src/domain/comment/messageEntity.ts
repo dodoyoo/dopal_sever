@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 import { Conversation } from './conversationEntity';
 
-@Entity('messages')
+@Entity('message')
 export class Message {
   @PrimaryGeneratedColumn()
   id!: number;
