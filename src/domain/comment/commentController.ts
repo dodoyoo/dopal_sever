@@ -8,6 +8,7 @@ import {
 } from '../../utils/customError';
 import { CommentRepository } from './commentRepository';
 import OpenAi from 'openai';
+import { Conversation } from './conversationEntity';
 
 export class CommentController {
   private commentRepository: CommentRepository;
@@ -58,6 +59,24 @@ export class CommentController {
       return reportErrorMessage(err, res);
     }
   }
+
+  public async findAllComments(req: Request, res: Response) {
+    try {
+      const conversations: Conversation[] =
+        await this.commentRepository.findAllConversation();
+
+      if (conversations.length === 0) {
+        const err = new NotFoundDataError('게시글을 찾을 수 없습니다.');
+        return reportErrorMessage(err, res);
+      } else {
+        res
+          .status(200)
+          .json({ message: '게시글 가져오기 성공', conversations });
+      }
+    } catch (err: unknown) {
+      return reportErrorMessage(err, res);
+    }
+  }
 }
 
 //   public async createComments(req: Request, res: Response) {
@@ -89,21 +108,6 @@ export class CommentController {
 //       return saved;
 //     } catch (err: unknown) {
 //       return console.error(err);
-//     }
-//   }
-
-//   public async findAllComments(req: Request, res: Response) {
-//     try {
-//       const comments: Comment[] = await this.commentRepository.findAllComment();
-
-//       if (comments.length === 0) {
-//         const err = new NotFoundDataError('게시글을 찾을 수 없습니다.');
-//         return reportErrorMessage(err, res);
-//       } else {
-//         res.status(200).json({ message: '게시글 가져오기 성공', comments });
-//       }
-//     } catch (err: unknown) {
-//       return reportErrorMessage(err, res);
 //     }
 //   }
 

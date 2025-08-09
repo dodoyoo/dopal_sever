@@ -12,4 +12,8 @@ router.post('/ask/:userId', async (req: Request, res: Response) =>
   commentController.askAi(req, res)
 );
 
+router.get('/ask/conversation', async (req: Request, res: Response) =>
+  commentController.findAllComments(req, res)
+);
+
 export default router;

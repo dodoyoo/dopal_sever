@@ -35,6 +35,22 @@ export class CommentRepository {
 
     return await this.messageRepo.save(message);
   }
+
+  public async findAllConversation(): Promise<Conversation[]> {
+    try {
+      const comments = await this.conversationRepo
+        .createQueryBuilder('conversation')
+        .leftJoinAndSelect('conversation.messages', 'message')
+        .leftJoinAndSelect('conversation.user', 'user')
+        .orderBy('conversation.created_at', 'DESC')
+        .addOrderBy('message.created_at', 'ASC')
+        .getMany();
+      return comments;
+    } catch (error) {
+      console.error('대화를 불러오는데 실패했습니다.', error);
+      throw new PropertyRequiredError('Failed to get all conversations');
+    }
+  }
 }
 
 //   public async createComment(commentData: Partial<Comment>): Promise<Comment> {
@@ -46,21 +62,6 @@ export class CommentRepository {
 //       throw new Error('Could not create comment');
 //     }
 //   }
-
-// public async findAllComment(): Promise<Comment[]> {
-//   try {
-//     const comments = await this.repository
-//       .createQueryBuilder('comment')
-//       .leftJoinAndSelect('comment.user', 'user')
-//       .select(['user.id', 'comment'])
-//       .orderBy('comment.created_at', 'DESC')
-//       .getMany();
-//     return comments;
-//   } catch (error) {
-//     console.error('게시글을 불러오는데 실패했습니다.', error);
-//     throw new PropertyRequiredError('Failed to get all comments');
-//   }
-// }
 
 // public async findCommentById(id: number): Promise<Comment | null> {
 //   try {
