@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import { Router, Request, Response } from 'express';
-import OpenAI from 'openai';
 import { CommentController } from '../comment/commentController';
 import { CommentRepository } from '../comment/commentRepository';
 
@@ -16,4 +15,9 @@ router.get('/ask/conversation', async (req: Request, res: Response) =>
   commentController.findAllComments(req, res)
 );
 
+router.get(
+  '/ask/conversation/:conversationId',
+  async (req: Request, res: Response) =>
+    commentController.getConversation(req, res)
+);
 export default router;

@@ -51,6 +51,17 @@ export class CommentRepository {
       throw new PropertyRequiredError('Failed to get all conversations');
     }
   }
+  public async findCommentById(id: number): Promise<Conversation | null> {
+    try {
+      return await this.conversationRepo.findOne({
+        where: { id },
+        relations: ['user'],
+      });
+    } catch (error) {
+      console.error('대화를 찾는데 실패했습니다.', error);
+      throw new PropertyRequiredError('Failed to find comment');
+    }
+  }
 }
 
 //   public async createComment(commentData: Partial<Comment>): Promise<Comment> {
@@ -62,18 +73,6 @@ export class CommentRepository {
 //       throw new Error('Could not create comment');
 //     }
 //   }
-
-// public async findCommentById(id: number): Promise<Comment | null> {
-//   try {
-//     return await this.repository.findOne({
-//       where: { id },
-//       relations: ['user'],
-//     });
-//   } catch (error) {
-//     console.error('게시글을 찾는데 실패했습니다.', error);
-//     throw new PropertyRequiredError('Failed to find comment');
-//   }
-// }
 
 // // 질문 삭제
 // public async deleteCommentById(

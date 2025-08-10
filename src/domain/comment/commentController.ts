@@ -77,6 +77,30 @@ export class CommentController {
       return reportErrorMessage(err, res);
     }
   }
+  public async getConversation(req: Request, res: Response) {
+    try {
+      const conversationId: number = parseInt(req.params.conversationId, 10);
+
+      if (!conversationId) {
+        const err = new PropertyRequiredError('게시글 ID가 필요합니다.');
+        return reportErrorMessage(err, res);
+      }
+
+      const conversation: Conversation | null =
+        await this.commentRepository.findCommentById(conversationId);
+
+      if (!conversation) {
+        const err = new NotFoundDataError('게시글이 존재하지 않습니다.');
+        return reportErrorMessage(err, res);
+      }
+
+      return res
+        .status(200)
+        .json({ message: '게시글 가져오기 성공', conversation });
+    } catch (err: unknown) {
+      return reportErrorMessage(err, res);
+    }
+  }
 }
 
 //   public async createComments(req: Request, res: Response) {
@@ -108,29 +132,6 @@ export class CommentController {
 //       return saved;
 //     } catch (err: unknown) {
 //       return console.error(err);
-//     }
-//   }
-
-//   public async getComment(req: Request, res: Response) {
-//     try {
-//       const commentId: number = parseInt(req.params.commentId, 10);
-
-//       if (!commentId) {
-//         const err = new PropertyRequiredError('게시글 ID가 필요합니다.');
-//         return reportErrorMessage(err, res);
-//       }
-
-//       const comment: Comment | null =
-//         await this.commentRepository.findCommentById(commentId);
-
-//       if (!comment) {
-//         const err = new NotFoundDataError('게시글이 존재하지 않습니다.');
-//         return reportErrorMessage(err, res);
-//       }
-
-//       return res.status(200).json({ message: '게시글 가져오기 성공', comment });
-//     } catch (err: unknown) {
-//       return reportErrorMessage(err, res);
 //     }
 //   }
 
