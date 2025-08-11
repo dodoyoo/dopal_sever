@@ -9,6 +9,7 @@ import {
 import { CommentRepository } from './commentRepository';
 import OpenAi from 'openai';
 import { Conversation } from './conversationEntity';
+import { Message } from './messageEntity';
 
 export class CommentController {
   private commentRepository: CommentRepository;
@@ -82,7 +83,7 @@ export class CommentController {
       const conversationId: number = parseInt(req.params.conversationId, 10);
 
       if (!conversationId) {
-        const err = new PropertyRequiredError('게시글 ID가 필요합니다.');
+        const err = new PropertyRequiredError('대화 ID가 필요합니다.');
         return reportErrorMessage(err, res);
       }
 
@@ -90,13 +91,13 @@ export class CommentController {
         await this.commentRepository.findCommentById(conversationId);
 
       if (!conversation) {
-        const err = new NotFoundDataError('게시글이 존재하지 않습니다.');
+        const err = new NotFoundDataError('대화가 존재하지 않습니다.');
         return reportErrorMessage(err, res);
       }
 
       return res
         .status(200)
-        .json({ message: '게시글 가져오기 성공', conversation });
+        .json({ message: '대화 가져오기 성공', conversation });
     } catch (err: unknown) {
       return reportErrorMessage(err, res);
     }

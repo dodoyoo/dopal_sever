@@ -55,7 +55,8 @@ export class CommentRepository {
     try {
       return await this.conversationRepo.findOne({
         where: { id },
-        relations: ['user'],
+        relations: ['user', 'messages'],
+        order: { messages: { created_at: 'ASC' } },
       });
     } catch (error) {
       console.error('대화를 찾는데 실패했습니다.', error);
