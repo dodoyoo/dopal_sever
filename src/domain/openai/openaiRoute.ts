@@ -20,4 +20,10 @@ router.get(
   async (req: Request, res: Response) =>
     commentController.getConversation(req, res)
 );
+
+router.delete(
+  '/ask/conversation/:conversationId',
+  async (req: Request, res: Response) =>
+    commentController.deleteConversation(req, res)
+);
 export default router;
