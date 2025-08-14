@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import compression from 'compression';
 import openaiRoute from './src/domain/openai/openaiRoute';
 import userRouter from './src/domain/user/userRout';
-import commentRouter from './src/domain/comment/commentRoute';
 
 import path from 'path';
 
@@ -23,7 +22,7 @@ export const createApp = () => {
   app.use(compression());
 
   app.use(userRouter);
-  app.use(commentRouter);
+  // app.use(commentRouter);
   app.use(openaiRoute);
 
   app.get('/ping', (req: Request, res: Response) => {
