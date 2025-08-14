@@ -124,38 +124,3 @@ export class CommentController {
     }
   }
 }
-
-//   public async createComments(req: Request, res: Response) {
-//     try {
-//       const { userId } = req.params;
-//       const { comment } = req.body;
-
-//       const commentData: Partial<Comment> = {
-//         user_id: parseInt(userId, 10),
-//         comment,
-//       };
-//       const content = await this.commentRepository.createConversation(user);
-//       res.status(200).json({ message: '게시글이 작성되었습니다.', content });
-//     } catch (err: unknown) {
-//       return reportErrorMessage(err, res);
-//     }
-//   }
-
-//   public async saveQuestionWithoutResponse(req: Request, res: Request) {
-//     try {
-//       const { userId } = req.params;
-//       const { comment } = req.body;
-
-//       const commentData = {
-//         user_id: parseInt(userId, 10),
-//         comment,
-//       };
-//       const saved = await this.commentRepository.createComment(commentData);
-//       return saved;
-//     } catch (err: unknown) {
-//       return console.error(err);
-//     }
-//   }
-
-//   // 질문 삭제
-//   }
