@@ -88,7 +88,7 @@ export class CommentController {
       }
 
       const conversation: Conversation | null =
-        await this.commentRepository.findCommentById(conversationId);
+        await this.commentRepository.findConversationById(conversationId);
 
       if (!conversation) {
         const err = new NotFoundDataError('대화가 존재하지 않습니다.');
@@ -98,6 +98,27 @@ export class CommentController {
       return res
         .status(200)
         .json({ message: '대화 가져오기 성공', conversation });
+    } catch (err: unknown) {
+      return reportErrorMessage(err, res);
+    }
+  }
+
+  public async deleteConversation(req: Request, res: Response) {
+    try {
+      const { conversationId } = req.params;
+      const { user_id } = req.body;
+
+      const deleteConversation =
+        await this.commentRepository.deleteConversationById(
+          parseInt(conversationId, 10),
+          user_id
+        );
+
+      if (!deleteConversation) {
+        const err = new NotFoundDataError('질문을 찾을 수 없습니다.');
+        return reportErrorMessage(err, res);
+      }
+      res.status(200).json({ message: '질문이 삭제되었습니다.' });
     } catch (err: unknown) {
       return reportErrorMessage(err, res);
     }
@@ -137,22 +158,4 @@ export class CommentController {
 //   }
 
 //   // 질문 삭제
-//   public async deleteComment(req: Request, res: Response) {
-//     try {
-//       const { commentId } = req.params;
-//       const { user_id } = req.body;
-
-//       const deleteComment = await this.commentRepository.deleteCommentById(
-//         parseInt(commentId, 10),
-//         user_id
-//       );
-
-//       if (!deleteComment) {
-//         const err = new NotFoundDataError('질문을 찾을 수 없습니다.');
-//         return reportErrorMessage(err, res);
-//       }
-//       res.status(200).json({ message: '질문이 삭제되었습니다.' });
-//     } catch (err: unknown) {
-//       return reportErrorMessage(err, res);
-//     }
 //   }

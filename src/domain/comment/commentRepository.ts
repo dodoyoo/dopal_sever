@@ -51,7 +51,7 @@ export class CommentRepository {
       throw new PropertyRequiredError('Failed to get all conversations');
     }
   }
-  public async findCommentById(id: number): Promise<Conversation | null> {
+  public async findConversationById(id: number): Promise<Conversation | null> {
     try {
       return await this.conversationRepo.findOne({
         where: { id },
@@ -61,6 +61,24 @@ export class CommentRepository {
     } catch (error) {
       console.error('대화를 찾는데 실패했습니다.', error);
       throw new PropertyRequiredError('Failed to find comment');
+    }
+  }
+
+  // 질문 삭제
+  public async deleteConversationById(
+    id: number,
+    user_id: number
+  ): Promise<boolean> {
+    try {
+      const conversation = await this.findConversationById(id);
+      if (conversation?.user.id !== user_id) {
+        throw new PropertyRequiredError('권한이 없습니다.');
+      }
+      await this.conversationRepo.remove(conversation);
+      return true;
+    } catch (error) {
+      console.error('질문 삭제에 실패했습니다.', error);
+      throw error;
     }
   }
 }
@@ -75,20 +93,4 @@ export class CommentRepository {
 //     }
 //   }
 
-// // 질문 삭제
-// public async deleteCommentById(
-//   id: number,
-//   user_id: number
-// ): Promise<boolean> {
-//   try {
-//     const comment = await this.findCommentById(id);
-//     if (comment?.user.id !== user_id) {
-//       throw new PropertyRequiredError('권한이 없습니다.');
-//     }
-//     await this.repository.remove(comment);
-//     return true;
-//   } catch (error) {
-//     console.error('질문 삭제에 실패했습니다.', error);
-//     throw error;
-//   }
 // }
