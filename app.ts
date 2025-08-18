@@ -18,9 +18,7 @@ export const createApp = () => {
     })
   );
 
-  app.use(
-    express.static(path.join(__dirname, 'public', './static/js/ai.html'))
-  );
+  app.use(express.static(path.join(__dirname, './static')));
   app.use('/css', express.static('./static/css'));
   app.use('/js', express.static('./static/js'));
 

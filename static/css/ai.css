@@ -80,6 +80,27 @@ body {
   text-overflow: ellipsis;
 }
 
+.delete-chat-btn {
+  background: none;
+  border: none;
+  color: #7d8590;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.chat-item:hover .delete-chat-btn {
+  opacity: 1;
+}
+
+.delete-chat-btn:hover {
+  background-color: #f85149;
+  color: white;
+}
+
 .sidebar-footer {
   padding: 16px;
   border-top: 1px solid #30363d;
