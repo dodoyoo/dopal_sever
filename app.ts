@@ -29,5 +29,9 @@ export const createApp = () => {
     res.status(200).json({ message: 'PongPong' });
   });
 
+  app.get('/ai/main', (req, res) => {
+    res.sendFile(path.join(__dirname, './static/js/ai.html'));
+  });
+
   return app;
 };

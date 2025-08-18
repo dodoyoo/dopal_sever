@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dopal🐶</title>
+    <link rel="stylesheet" href="./css/ai.css" />
+  </head>
+  <body>
+    <!-- 사이드바 -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <button class="new-chat-btn" onclick="startNewChat()">
+          <span>+</span>
+          새 채팅
+        </button>
+      </div>
+
+      <div class="chat-list" id="chatList">
+        <div class="chat-item active" onclick="selectChat(this)">
+          <span class="chat-item-text">새 채팅</span>
+        </div>
+        <div class="chat-item" onclick="selectChat(this)">
+          <span class="chat-item-text">코딩 질문</span>
+        </div>
+        <div class="chat-item" onclick="selectChat(this)">
+          <span class="chat-item-text">웹 개발 도움</span>
+        </div>
+        <div class="chat-item" onclick="selectChat(this)">
+          <span class="chat-item-text">기계학습 설명</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar">U</div>
+          <div>
+            <div style="font-weight: 500">사용자</div>
+            <div style="font-size: 12px; color: #7d8590">user@example.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="main-content">
+      <div class="main-header">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
+        <div class="model-selector">
+          <span>GPT-3.5-Turbo</span>
+          <span>▼</span>
+        </div>
+      </div>
+
+      <div class="chat-area" id="chatArea">
+        <div class="message assistant-message">
+          <div class="message-avatar">AI</div>
+          <div class="message-content">
+            안녕하세요! 무엇을 도와드릴까요? 궁금한 것이 있으시면 언제든지
+            질문해 주세요.
+          </div>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="input-container">
+          <textarea
+            class="message-input"
+            id="messageInput"
+            placeholder="메시지를 입력하세요..."
+            rows="1"
+            onkeydown="handleKeyDown(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./ai.js"></script>
+  </body>
+</html>
