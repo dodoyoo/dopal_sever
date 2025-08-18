@@ -18,11 +18,16 @@ export const createApp = () => {
     })
   );
 
+  app.use(
+    express.static(path.join(__dirname, 'public', './static/js/ai.html'))
+  );
+  app.use('/css', express.static('./static/css'));
+  app.use('/js', express.static('./static/js'));
+
   app.use(morgan('combined'));
   app.use(compression());
 
   app.use(userRouter);
-  // app.use(commentRouter);
   app.use(openaiRoute);
 
   app.get('/ping', (req: Request, res: Response) => {
